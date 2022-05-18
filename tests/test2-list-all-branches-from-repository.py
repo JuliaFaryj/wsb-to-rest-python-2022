@@ -1,5 +1,3 @@
-import json
-
 import requests
 from settings import credentials
 from settings.githubconfig import GITHUB_REST_URL_REF
@@ -12,7 +10,7 @@ def test_create_branch1_in_repository():
     response = requests.post(GITHUB_REST_URL_REF, auth=(credentials.GITHUB_USER, credentials.GITHUB_PASSWORD),
                              headers={'content-type': 'application/json'})
     assert response.status_code == 201
-    response_body = json()
+    response_body = response.json()
     var = {
         "ref": "refs/heads/branch1",
         "sha": "<cdcefaccc4e8858f291c40705fab4488fb44ae27>"

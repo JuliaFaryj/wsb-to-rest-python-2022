@@ -1,0 +1,2 @@
+GITHUB_USER = "TatZhuk"
+GITHUB_PASSWORD = "Tan2015Zhukvk"

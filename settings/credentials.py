@@ -1,2 +1,1 @@
-GITHUB_USER = "TatZhuk"
-GITHUB_PASSWORD = "Tan2015Zhukvk"
+GITHUB_TOKEN = "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"

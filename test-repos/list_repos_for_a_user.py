@@ -11,3 +11,16 @@ def test_status_200_for_existing_user():
     response = requests.get(url)
     assert response.status_code == 200
 
+def test_Publiczne_repo_exist():
+    url = "https://api.github.com/users/JuliaFaryj/repos"
+    response = requests.get(url)
+    assert response.status_code == 200
+    jsonBody = response.json()
+    assert jsonBody[0]["name"] == "Publiczne"
+
+def test_test_pubic_repo_exist():
+    url = "https://api.github.com/users/JuliaFaryj/repos"
+    response = requests.get(url)
+    assert response.status_code == 200
+    jsonBody = response.json()
+    assert jsonBody[1]["name"] == "test-pubic"

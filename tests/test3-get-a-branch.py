@@ -4,14 +4,14 @@ from settings.githubconfig import GITHUB_REST_URL_REF
 from settings.githubconfig import GITHUB_REST_URL_BRANCH1
 
 
-def test_preparation_get_branch_sha():
+def get_branch_sha():
     response = requests.get(GITHUB_REST_URL_REF + "/heads/main")
     data = response.json()
     sha = data["object"]["sha"]
     return sha
 
 
-def test_preparation_create_new_branch():
+def create_new_branch():
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
@@ -32,7 +32,7 @@ def test_get_a_branch_from_repository():
     assert response_body["name"] == "new-branch"
 
 
-def test_ending_delete_new_branch():
+def delete_new_branch():
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }

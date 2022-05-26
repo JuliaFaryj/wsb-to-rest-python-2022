@@ -15,7 +15,7 @@ def create_new_branch():
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
-    sha = test_preparation_get_branch_sha()
+    sha = get_branch_sha()
     data = {
         "ref": "refs/heads/new-branch",
         "sha": sha
@@ -29,7 +29,7 @@ def create_new_branch1():
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
-    sha = test_preparation_get_branch_sha()
+    sha = get_branch_sha()
     data = {
         "ref": "refs/heads/new-branch1",
         "sha": sha
@@ -40,6 +40,8 @@ def create_new_branch1():
 
 
 def test_list_all_branches_from_repository():
+    create_new_branch1()
+    create_new_branch()
     response = requests.get(GITHUB_REST_URL_BRANCHES)
     assert response.status_code == 200
     response_body = response.json()

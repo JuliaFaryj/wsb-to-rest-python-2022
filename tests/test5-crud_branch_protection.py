@@ -35,19 +35,20 @@ def test_get_branch_protection():
     assert response.status_code == 200
 
 
-def test_update_branch_protection(false=None, true=None):
+def test_update_branch_protection():
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
     data = json.dumps({
-        "required_signatures": false,
-        "enforce_admins": false,
-        "required_linear_history": true,
-        "allow_force_pushes": false,
-        "allow_deletions": false,
-        "block_creations": false,
-        "required_conversation_resolution": false
+        "required_signatures": False,
+        "enforce_admins": False,
+        "required_linear_history": True,
+        "allow_force_pushes": False,
+        "allow_deletions": False,
+        "block_creations": False,
+        "required_conversation_resolution": False
     })
+    print(data)
     response = requests.put(GITHUB_REST_URL_BRANCHES + "/branch1/protection",
                             headers=headers, json=data)
     assert response.status_code == 200

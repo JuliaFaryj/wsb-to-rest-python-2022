@@ -5,6 +5,7 @@ from settings.githubconfig import GITHUB_REST_URL_BRANCH1
 
 
 def get_branch_sha():
+    """getting sha of the main branch to create a new branch in the repository"""
     response = requests.get(GITHUB_REST_URL_REF + "/heads/main")
     data = response.json()
     sha = data["object"]["sha"]
@@ -12,10 +13,11 @@ def get_branch_sha():
 
 
 def create_new_branch():
+    """creating a new branch in the repository"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
-    sha = test_preparation_get_branch_sha()
+    sha = get_branch_sha()
     data = {
         "ref": "refs/heads/new-branch",
         "sha": sha
@@ -26,6 +28,8 @@ def create_new_branch():
 
 
 def test_get_a_branch_from_repository():
+    """"getting information about a new-branch in the repository"""
+    create_new_branch()
     response = requests.get(GITHUB_REST_URL_BRANCH1)
     assert response.status_code == 200
     response_body = response.json()
@@ -33,6 +37,7 @@ def test_get_a_branch_from_repository():
 
 
 def delete_new_branch():
+    """"deleting new-branch to finish the test"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }

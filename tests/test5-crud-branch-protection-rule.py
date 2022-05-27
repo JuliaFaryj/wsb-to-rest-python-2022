@@ -6,6 +6,7 @@ from settings.githubconfig import GITHUB_REST_URL_REF
 
 
 def get_branch_sha():
+    """getting sha of the main branch to create a new branch in the repository"""
     response = requests.get(GITHUB_REST_URL_REF + "/heads/main")
     data = response.json()
     sha = data["object"]["sha"]
@@ -13,6 +14,7 @@ def get_branch_sha():
 
 
 def create_new_branch():
+    """creating a new branch in the repository"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
@@ -27,6 +29,8 @@ def create_new_branch():
 
 
 def test_get_branch_protection():
+    """getting a new branch protection rule in the repository"""
+    create_new_branch()
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
@@ -36,10 +40,11 @@ def test_get_branch_protection():
 
 
 def test_update_branch_protection():
+    """updating  information in a new branch protection rule in the repository"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
-    data = json.dumps({
+    payload = {
         "required_signatures": False,
         "enforce_admins": False,
         "required_linear_history": True,
@@ -47,14 +52,14 @@ def test_update_branch_protection():
         "allow_deletions": False,
         "block_creations": False,
         "required_conversation_resolution": False
-    })
-    print(data)
+    }
     response = requests.put(GITHUB_REST_URL_BRANCHES + "/branch1/protection",
-                            headers=headers, json=data)
+                            headers=headers, params=payload)
     assert response.status_code == 200
 
 
 def test_delete_branch_protection():
+    """"deleting branch protection rule to finish the test"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
@@ -64,6 +69,7 @@ def test_delete_branch_protection():
 
 
 def delete_new_branch():
+    """"deleting branch1 to finish the test"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }

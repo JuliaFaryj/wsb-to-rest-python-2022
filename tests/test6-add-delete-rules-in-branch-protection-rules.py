@@ -38,8 +38,12 @@ def test_update_pull_request_reviews():
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
+    data = {
+        "dismiss_stale_reviews": True,
+        "require_code_owner_reviews": True
+    }
     response = requests.patch(GITHUB_REST_URL_BRANCHES + "/branch1/protection/required_pull_request_reviews",
-                              headers=headers)
+                              headers=headers, json=data)
     assert response.status_code == 200
 
 

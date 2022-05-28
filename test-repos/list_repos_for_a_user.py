@@ -1,4 +1,5 @@
 # https://docs.github.com/en/rest/repos/repos#list-repositories-for-a-user
+# tests for unauthenticated user to list public repos of other user
 import requests
 
 def test_status_404_for_not_existing_user():

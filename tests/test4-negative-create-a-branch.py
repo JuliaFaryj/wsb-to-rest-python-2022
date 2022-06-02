@@ -14,7 +14,7 @@ def test_negative_create_new_branch_no_auth():
     """creating a new branch in the repository without authorization"""
     sha = get_branch_sha()
     data = {
-        "ref": "refs/heads/new-branch",
+        "ref": "refs/heads/test-branch",
         "sha": sha
     }
     response = requests.post(GITHUB_REST_URL_REF,
@@ -29,7 +29,7 @@ def test_negative_create_new_branch_no_token():
         "Authorization": "token "
     }
     data = {
-        "ref": "refs/heads/new-branch",
+        "ref": "refs/heads/test-branch",
         "sha": sha
     }
     response = requests.post(GITHUB_REST_URL_REF,
@@ -45,7 +45,7 @@ def test_negative_create_new_branch_incorrect_token():
         "Authorization": "token ghp_pusNUAtBf15UYYrDad2zbSuDycjsts09vie8"
     }
     data = {
-        "ref": "refs/heads/new-branch",
+        "ref": "refs/heads/test-branch",
         "sha": sha
     }
     response = requests.post(GITHUB_REST_URL_REF,

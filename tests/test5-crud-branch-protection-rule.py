@@ -1,44 +1,9 @@
 import requests
 from settings.credentials import GITHUB_TOKEN
 from settings.githubconfig import GITHUB_REST_URL_BRANCHES
-from settings.githubconfig import GITHUB_REST_URL_REF
 
 
-def get_branch_sha():
-    """getting sha of the main branch to create a new branch in the repository"""
-    response = requests.get(GITHUB_REST_URL_REF + "/heads/main")
-    data = response.json()
-    sha = data["object"]["sha"]
-    return sha
-
-
-def create_new_branch():
-    """creating a new branch in the repository"""
-    headers = {
-        "Authorization": "token " + GITHUB_TOKEN
-    }
-    sha = get_branch_sha()
-    data = {
-        "ref": "refs/heads/branch1",
-        "sha": sha
-    }
-    requests.post(GITHUB_REST_URL_REF,
-                  headers=headers,
-                  json=data)
-
-
-def test_get_branch_protection():
-    """getting a new branch protection rule in the repository"""
-    create_new_branch()
-    headers = {
-        "Authorization": "token " + GITHUB_TOKEN
-    }
-    response = requests.get(GITHUB_REST_URL_BRANCHES + "/branch1/protection",
-                            headers=headers)
-    assert response.status_code == 200
-
-
-def test_update_branch_protection():
+def test_update_branch_protection(create_branch_no_delete):
     """updating  information in a new branch protection rule in the repository"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
@@ -49,24 +14,80 @@ def test_update_branch_protection():
         "required_pull_request_reviews": None,
         "restrictions": None
     }
-    response = requests.put(GITHUB_REST_URL_BRANCHES + "/branch1/protection",
+    response = requests.put(GITHUB_REST_URL_BRANCHES + "/test-branch/protection",
                             headers=headers, json=data)
     assert response.status_code == 200
 
 
-def test_delete_branch_protection():
-    """"deleting branch protection rule to finish the test"""
+def test_get_branch_protection():
+    """getting a new branch protection rule in the repository"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
-    response = requests.delete(GITHUB_REST_URL_BRANCHES + "/branch1/protection",
+    response = requests.get(GITHUB_REST_URL_BRANCHES + "/test-branch/protection",
+                            headers=headers)
+    assert response.status_code == 200
+
+
+def test_create_required_signatures():
+    """"adding required_signatures rule in the protection rule of a branch1"""
+    headers = {
+        "Authorization": "token " + GITHUB_TOKEN
+    }
+    response = requests.post(GITHUB_REST_URL_BRANCHES + "/test-branch/protection/required_signatures",
+                             headers=headers)
+    assert response.status_code == 200
+
+
+def test_delete_required_signatures():
+    """"deleting required_signatures rule in the protection rule of a branch1"""
+    headers = {
+        "Authorization": "token " + GITHUB_TOKEN
+    }
+    response = requests.delete(GITHUB_REST_URL_BRANCHES + "/test-branch/protection/required_signatures",
                                headers=headers)
     assert response.status_code == 204
 
 
-def delete_new_branch():
-    """"deleting branch1 to finish the test"""
+def test_get_pull_request_reviews():
+    """"getting required_pull_request_reviews rule in the protection rule of a branch1"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
-    requests.delete(GITHUB_REST_URL_REF + "/heads/branch1", headers=headers)
+    response = requests.get(GITHUB_REST_URL_BRANCHES + "/test-branch/protection/required_pull_request_reviews",
+                            headers=headers)
+    assert response.status_code == 200
+
+
+def test_update_pull_request_reviews():
+    """"updating required_pull_request_reviews rule in the protection rule of a branch1"""
+    headers = {
+        "Authorization": "token " + GITHUB_TOKEN
+    }
+    data = {
+        "dismiss_stale_reviews": True,
+        "require_code_owner_reviews": True
+    }
+    response = requests.patch(GITHUB_REST_URL_BRANCHES + "/test-branch/protection/required_pull_request_reviews",
+                              headers=headers, json=data)
+    assert response.status_code == 200
+
+
+def test_delete_pull_request_reviews():
+    """"deleting required_pull_request_reviews rule in the protection rule of a branch1"""
+    headers = {
+        "Authorization": "token " + GITHUB_TOKEN
+    }
+    response = requests.delete(GITHUB_REST_URL_BRANCHES + "/test-branch/protection/required_pull_request_reviews",
+                               headers=headers)
+    assert response.status_code == 204
+
+
+def test_delete_branch_protection(delete_branch):
+    """"deleting branch protection rule to finish the test"""
+    headers = {
+        "Authorization": "token " + GITHUB_TOKEN
+    }
+    response = requests.delete(GITHUB_REST_URL_BRANCHES + "/test-branch/protection",
+                               headers=headers)
+    assert response.status_code == 204

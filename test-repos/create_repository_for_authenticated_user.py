@@ -10,8 +10,21 @@ def test_status_201_for_new_repo():
     dataToSend = {
         "name": "my-python-created-test-public-repo-01"
     }
-    response = requests.post(url=restUrl,
+    response = requests.post(
+            url=restUrl,
             auth= (GITHUB_API_USER, GITHUB_API_TOKEN),
-            json=dataToSend
-    )
+            json=dataToSend)
+
     assert response.status_code == 201
+
+def test_status_422_when_creating_repo_with_name_already_existing():
+    restUrl = "https://api.github.com/user/repos"
+    dataToSend = {
+        "name": "wsb-to-rest-python-2022"
+    }
+    response = requests.post(
+            url=restUrl,
+            auth= (GITHUB_API_USER, GITHUB_API_TOKEN),
+            json=dataToSend)
+
+    assert response.status_code == 422

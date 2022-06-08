@@ -7,7 +7,7 @@ from settings.credentials import GITHUB_API_USER
 from settings.credentials import GITHUB_API_TOKEN
 
 # tests for authenticated user to create a new public repository
-def test_status_201_for_new_repo():
+def test_status_201_for_new_public_repo():
     restUrl = "https://api.github.com/user/repos"
     dataToSend = {
         "name": "my-python-created-test-public-repo-01"

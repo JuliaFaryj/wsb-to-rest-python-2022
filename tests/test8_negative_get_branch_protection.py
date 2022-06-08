@@ -1,4 +1,5 @@
 import requests
+import pytest
 from settings.credentials import GITHUB_TOKEN
 from settings.githubconfig import GITHUB_REST_URL_PROTECTION
 

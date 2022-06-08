@@ -1,4 +1,3 @@
-import pytest
 import requests
 from settings.githubconfig import GITHUB_REST_URL_REF
 from settings.credentials import GITHUB_TOKEN
@@ -14,7 +13,7 @@ def get_branch_sha():
 
 
 def create_new_branch(branch_name):
-    """creating a new branch in the repository"""
+    """create a new branch in the repository"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
@@ -29,7 +28,7 @@ def create_new_branch(branch_name):
 
 
 def delete_new_branch(branch_name):
-    """"deleting new-branch to finish the test"""
+    """"delete a new branch to finish the test"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
@@ -61,7 +60,7 @@ def delete_branch_protection(branch_name):
 
 
 def create_required_signatures(branch_name):
-    """"adding required_signatures rule in the protection rule of a test-branch"""
+    """"add required_signatures rule in the protection rule"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
@@ -70,9 +69,22 @@ def create_required_signatures(branch_name):
 
 
 def delete_required_signatures(branch_name):
-    """"deleting required_signatures rule in the protection rule of a branch1"""
+    """"delete required_signatures in the protection rule"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
     requests.delete(GITHUB_REST_URL_BRANCHES + "/" + branch_name + "/protection/required_signatures",
                     headers=headers)
+
+
+def create_pull_request_reviews(branch_name):
+    """"create and update required_pull_request_reviews in the protection rule"""
+    headers = {
+        "Authorization": "token " + GITHUB_TOKEN
+    }
+    data = {
+        "dismiss_stale_reviews": True,
+        "require_code_owner_reviews": True
+    }
+    requests.patch(GITHUB_REST_URL_BRANCHES + "/" + branch_name + "/required_pull_request_reviews",
+                   headers=headers, json=data)

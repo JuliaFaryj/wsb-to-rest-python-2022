@@ -4,7 +4,7 @@ from settings.githubconfig import GITHUB_REST_URL_REF
 
 
 def test_negative_create_new_branch_no_auth(branch_sha):
-    """creating a new branch in the repository without authorization"""
+    """create a new branch in the repository without authorization"""
     sha = branch_sha
     data = {
         "ref": "refs/heads/test-branch",

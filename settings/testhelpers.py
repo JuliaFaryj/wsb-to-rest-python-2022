@@ -5,7 +5,7 @@ from settings.githubconfig import GITHUB_REST_URL_BRANCHES
 
 
 def get_branch_sha():
-    """getting sha of the main branch to create a new branch in the repository"""
+    """get sha of the main branch to create a new branch in the repository"""
     response = requests.get(GITHUB_REST_URL_REF + "/heads/main")
     data = response.json()
     sha = data["object"]["sha"]
@@ -36,7 +36,7 @@ def delete_new_branch(branch_name):
 
 
 def update_branch_protection(branch_name):
-    """updating  information in a new branch protection rule in the repository"""
+    """add and update  information in a new branch protection rule in the repository"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }
@@ -51,7 +51,7 @@ def update_branch_protection(branch_name):
 
 
 def delete_branch_protection(branch_name):
-    """"deleting branch protection rule"""
+    """"delete branch protection rule"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }

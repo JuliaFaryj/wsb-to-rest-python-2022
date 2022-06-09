@@ -4,7 +4,7 @@ from settings.githubconfig import GITHUB_REST_URL_REF
 
 
 def test_negative_create_new_branch_no_token(branch_sha):
-    """creating a new branch in the repository without putting in token"""
+    """create a new branch in the repository without putting in token"""
     sha = branch_sha
     headers = {
         "Authorization": "token "

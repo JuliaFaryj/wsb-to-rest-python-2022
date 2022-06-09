@@ -5,7 +5,7 @@ from settings.githubconfig import GITHUB_REST_URL_PROTECTION
 
 
 def test_delete_required_signatures(signatures_protection_create):
-    """"deleting required_signatures rule in the protection rule of a branch1"""
+    """"delete required_signatures rule in the protection rule of a branch"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }

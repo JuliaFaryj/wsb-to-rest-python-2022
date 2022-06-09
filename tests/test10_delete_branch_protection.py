@@ -5,7 +5,7 @@ from settings.githubconfig import GITHUB_REST_URL_PROTECTION
 
 
 def test_delete_branch_protection(update_protection):
-    """"deleting branch protection rule to finish the test"""
+    """"delete branch protection rule"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }

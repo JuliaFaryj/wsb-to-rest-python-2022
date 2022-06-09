@@ -4,7 +4,7 @@ from settings.githubconfig import GITHUB_REST_URL_BRANCHES
 
 
 def test_list_all_branches_from_repository(create_branches):
-    """listing all the branches in the repository"""
+    """list all the branches in the repository"""
     response = requests.get(GITHUB_REST_URL_BRANCHES)
     assert response.status_code == 200
     response_body = response.json()

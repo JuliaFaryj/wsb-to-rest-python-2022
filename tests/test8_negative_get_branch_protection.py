@@ -4,7 +4,7 @@ from settings.credentials import GITHUB_TOKEN
 from settings.githubconfig import GITHUB_REST_URL_PROTECTION
 
 
-def test_get_branch_protection(create_branch):
+def test_negative_get_branch_protection(create_branch):
     """get a branch protection rule when it's not created"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN

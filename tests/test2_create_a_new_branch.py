@@ -4,8 +4,8 @@ from settings.credentials import GITHUB_TOKEN
 from settings.githubconfig import GITHUB_REST_URL_REF
 
 
-def test_create_new_branch(branch_sha):
-    """create a new branch in repository when authorized"""
+def test_create_new_branch(branch_sha, delete_branch):
+    """create a new branch in repository"""
     sha = branch_sha
     headers = {
         "Authorization": "token " + GITHUB_TOKEN

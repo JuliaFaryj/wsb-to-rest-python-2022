@@ -4,7 +4,7 @@ from settings.credentials import GITHUB_TOKEN
 
 
 def test_get_repo_status_code_with_auth():
-    """requesting for repository status code when authorised"""
+    """request for repository status code when authorised"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }

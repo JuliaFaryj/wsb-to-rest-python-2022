@@ -5,7 +5,7 @@ from settings.githubconfig import GITHUB_REST_URL_PROTECTION
 
 
 def test_delete_pull_request_reviews(pull_requests_protection_create):
-    """"delete required_pull_request_reviews rule in the protection rule of a branch1"""
+    """"delete required_pull_request_reviews rule in the protection rule of a branch"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }

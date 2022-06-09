@@ -5,7 +5,7 @@ from settings.githubconfig import GITHUB_REST_URL_PROTECTION
 
 
 def test_get_branch_protection(update_protection_delete_all):
-    """get a branch protection rule"""
+    """get a branch protection rule information"""
     headers = {
         "Authorization": "token " + GITHUB_TOKEN
     }

@@ -1,2 +1,5 @@
 venv
 settings/credentials.py
+.idea
+__pycache__
+.pytest_cache

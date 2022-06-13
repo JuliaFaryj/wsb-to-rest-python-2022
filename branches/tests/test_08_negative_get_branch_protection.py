@@ -1,7 +1,7 @@
 import requests
 import pytest
-from settings.credentials import GITHUB_TOKEN
-from settings.githubconfig import GITHUB_REST_URL_PROTECTION
+from branches.settings.credentials_branches import GITHUB_TOKEN
+from branches.settings.githubconfig import GITHUB_REST_URL_PROTECTION
 
 
 def test_negative_get_branch_protection(create_branch):

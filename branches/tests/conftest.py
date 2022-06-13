@@ -1,5 +1,5 @@
 import pytest
-from settings import testhelpers
+from branches.settings import testhelpers
 
 
 @pytest.fixture(scope="session")

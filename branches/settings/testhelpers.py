@@ -1,14 +1,14 @@
 import requests
-from settings.githubconfig import GITHUB_REST_URL_REF
-from settings.credentials import GITHUB_TOKEN
-from settings.githubconfig import GITHUB_REST_URL_BRANCHES
+from branches.settings.githubconfig import GITHUB_REST_URL_REF
+from branches.settings.credentials_branches import GITHUB_TOKEN
+from branches.settings.githubconfig import GITHUB_REST_URL_BRANCHES
 
 
 def get_branch_sha():
     """get sha of the main branch to create a new branch in the repository"""
     response = requests.get(GITHUB_REST_URL_REF + "/heads/main")
-    data = response.json()
-    sha = data["object"]["sha"]
+    response_body = response.json()
+    sha = response_body["object"]["sha"]
     return sha
 
 

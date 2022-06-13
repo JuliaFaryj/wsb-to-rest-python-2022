@@ -1,6 +1,6 @@
 import requests
 import pytest
-from settings.githubconfig import GITHUB_REST_URL_REF
+from branches.settings.githubconfig import GITHUB_REST_URL_REF
 
 
 def test_negative_create_new_branch_no_auth(branch_sha):

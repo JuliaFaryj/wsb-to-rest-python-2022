@@ -1,6 +1,6 @@
 import requests
 import pytest
-from settings.githubconfig import GITHUB_REST_SEARCH
+from branches.settings.githubconfig import GITHUB_REST_SEARCH
 
 
 def test_search_for_a_concrete_repo():

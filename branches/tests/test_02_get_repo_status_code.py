@@ -1,7 +1,7 @@
 import requests
 import pytest
-from settings.githubconfig import GITHUB_REST_REPO_URL
-from settings.credentials import GITHUB_TOKEN
+from branches.settings.githubconfig import GITHUB_REST_REPO_URL
+from branches.settings.credentials_branches import GITHUB_TOKEN
 
 
 def test_get_repo_status_code_with_auth():

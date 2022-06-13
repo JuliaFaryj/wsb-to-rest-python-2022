@@ -1,6 +1,6 @@
 import requests
 import pytest
-from settings.githubconfig import GITHUB_REST_URL_BRANCHES
+from branches.settings.githubconfig import GITHUB_REST_URL_BRANCHES
 
 
 def test_list_all_branches_from_repository(create_branches):

@@ -13,3 +13,12 @@ def test_status_204_for_deleting_private_repo():
         auth=(GITHUB_API_USER, GITHUB_API_TOKEN))
 
     assert response.status_code == 204
+
+# tests for authenticated user to delete (with status code 204_no content) already existing public repository
+def test_status_204_for_deleting_public_repo():
+    url = "https://api.github.com/repos/JuliaFaryj/my-python-created-test-public-repo-01"
+    response = requests.delete(
+        url=url,
+        auth=(GITHUB_API_USER, GITHUB_API_TOKEN))
+
+    assert response.status_code == 204

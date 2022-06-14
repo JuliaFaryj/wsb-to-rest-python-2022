@@ -1,7 +1,7 @@
 import requests
 import pytest
-from branches.settings.credentials_branches import GITHUB_TOKEN
-from branches.settings.githubconfig import GITHUB_REST_URL_PROTECTION
+from tests.branches.settings.credentials_branches import GITHUB_TOKEN
+from tests.branches.settings.githubconfig import GITHUB_REST_URL_PROTECTION
 
 
 def test_create_required_signatures(signatures_protection_delete_all):

@@ -1,7 +1,7 @@
 import requests
 import pytest
-from branches.settings.credentials_branches import GITHUB_TOKEN
-from branches.settings.githubconfig import GITHUB_REST_URL_REF
+from tests.branches.settings.credentials_branches import GITHUB_TOKEN
+from tests.branches.settings.githubconfig import GITHUB_REST_URL_REF
 
 
 def test_create_new_branch(branch_sha, delete_branch):

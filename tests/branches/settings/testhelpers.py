@@ -1,7 +1,7 @@
 import requests
-from branches.settings.githubconfig import GITHUB_REST_URL_REF
-from branches.settings.credentials_branches import GITHUB_TOKEN
-from branches.settings.githubconfig import GITHUB_REST_URL_BRANCHES
+from tests.branches.settings.githubconfig import GITHUB_REST_URL_REF
+from tests.branches.settings.credentials_branches import GITHUB_TOKEN
+from tests.branches.settings.githubconfig import GITHUB_REST_URL_BRANCHES
 
 
 def get_branch_sha():

@@ -1,6 +1,6 @@
 import requests
 import pytest
-from branches.settings.githubconfig import GITHUB_REST_URL_BRANCH1
+from tests.branches.settings.githubconfig import GITHUB_REST_URL_BRANCH1
 
 
 def test_get_a_branch_info(create_branch):

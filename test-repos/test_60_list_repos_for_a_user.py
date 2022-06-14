@@ -13,16 +13,14 @@ def test_status_200_for_existing_user():
     response = requests.get(url)
     assert response.status_code == 200
 
-def test_Publiczne_repo_exist():
+def test_public_repo_exist():
     url = "https://api.github.com/users/"+GITHUB_API_USER+"/repos"
     response = requests.get(url)
     assert response.status_code == 200
     jsonBody = response.json()
-    assert jsonBody[2]["name"] == "Publiczne"
+    repoExists = False
+    for index in range(len(jsonBody)):
+        if jsonBody[index]["name"] == "my-python-created-test-public-repo-01":
+            repoExists = True
+    assert repoExists == True
 
-def test_test_pubic_repo_exist():
-    url = "https://api.github.com/users/"+GITHUB_API_USER+"/repos"
-    response = requests.get(url)
-    assert response.status_code == 200
-    jsonBody = response.json()
-    assert jsonBody[3]["name"] == "test-pubic"

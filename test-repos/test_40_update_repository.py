@@ -7,7 +7,7 @@ from settings.credentials import GITHUB_API_TOKEN
 
 # tests for authenticated user to update already existing private repository
 def test_status_200_for_updating_private_repo():
-    url = "https://api.github.com/repos/JuliaFaryj/my-python-created-test-private-repo-01"
+    url = "https://api.github.com/repos/"+GITHUB_API_USER+"/my-python-created-test-private-repo-01"
     dataToSend = {
         "description": "Updating already existing repo to test PATCH REST method"
     }

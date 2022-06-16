@@ -91,5 +91,6 @@ def test_get_repo_name_bug_scenario():
     # validate 'id'
     assert jsonRepoInfo["id"] == originalId
     # VALIDATE - EXPECTED BEHAVIOUR:
-    # as 'test-get-repo-bug-A' no longer exists expected status code should be 404
-    assert response.status_code == 404  # THIS WILL FAIL
+    # as 'test-get-repo-bug-A' no longer exists expected status code should be:
+    #  404 (Resource not found) or 301 (Moved permanently)
+    assert (response.status_code == 404 or response.status_code == 301)  # THIS WILL FAIL

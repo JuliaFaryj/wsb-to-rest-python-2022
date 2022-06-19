@@ -2,7 +2,7 @@ import requests
 from settings import TOKEN
 
 
-# Test using POST
+# Test using DELETE
 def test_create_commit_comment():
     headers = {"Accept": "application/vnd.github.v3+json", "Authorization": "token " + TOKEN}
     data = {
@@ -31,32 +31,3 @@ def delete_commit_comment():
     response = requests.delete(url, headers=headers)
     assert response.status_code == 204
 
-#Test using DELETE
-
-
-def create_commit_comment():
-    headers = {"Accept": "application/vnd.github.v3+json", "Authorization": "token " + TOKEN}
-    data = {
-        "body": "It is next comment",
-        "path": "GETcommits/lista.txt"
-    }
-    url = "https://api.github.com/repos/AleksandraWszeborowska/Windows/commits/fcdf6e3112e594e250481d20eb5c9203d818dbc0/comments"
-    requests.post(url, headers=headers, json=data)
-
-
-def get_comment_id():
-    create_commit_comment()
-    headers = {"Accept": "application/vnd.github.v3+json", "Authorization": "token " + TOKEN}
-    url = "https://api.github.com/repos/AleksandraWszeborowska/Windows/comments"
-    response = requests.get(url, headers=headers)
-    response_body = response.json()
-    comment_id = response_body[22]["id"]
-    return comment_id
-
-
-def test_delete_commit_comment():
-    comment_id = get_comment_id()
-    headers = {"Accept": "application/vnd.github.v3+json", "Authorization": "token " + TOKEN}
-    url = "https://api.github.com/repos/AleksandraWszeborowska/Windows/comments/" + str(comment_id)
-    response = requests.delete(url, headers=headers)
-    assert response.status_code == 204

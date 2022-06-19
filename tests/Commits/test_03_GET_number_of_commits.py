@@ -1,6 +1,6 @@
 import requests
 
-from settings import TOKEN
+from tests.Commits.settings import TOKEN
 
 #Test using GET number of commits
 def test_get_number_of_commits():

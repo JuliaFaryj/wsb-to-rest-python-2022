@@ -1,4 +1,4 @@
-from settings import TOKEN
+from tests.Commits.settings import TOKEN
 
 import requests
 

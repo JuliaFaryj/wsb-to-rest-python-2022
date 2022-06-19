@@ -1,5 +1,5 @@
 import requests
-from settings import TOKEN
+from tests.Commits.settings import TOKEN
 
 
 # Test using DELETE

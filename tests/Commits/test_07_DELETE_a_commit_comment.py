@@ -3,7 +3,7 @@ from tests.Commits.settings import TOKEN
 
 
 # Test using DELETE
-def test_create_commit_comment():
+def create_commit_comment():
     headers = {"Accept": "application/vnd.github.v3+json", "Authorization": "token " + TOKEN}
     data = {
         "body": "New comment is done!",
@@ -24,7 +24,7 @@ def get_comment_id():
     return comment_id
 
 
-def delete_commit_comment():
+def test_delete_commit_comment():
     comment_id = get_comment_id()
     headers = {"Accept": "application/vnd.github.v3+json", "Authorization": "token " + TOKEN}
     url = "https://api.github.com/repos/AleksandraWszeborowska/Windows/comments/" + str(comment_id)

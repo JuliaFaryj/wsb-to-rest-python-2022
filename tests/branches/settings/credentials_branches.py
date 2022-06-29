@@ -1,1 +1,1 @@
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "Ask me to give you a token for testing"
